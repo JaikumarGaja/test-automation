@@ -4,7 +4,7 @@ import sys
 from datetime import datetime # Add this import!
 
 # ... (Keep the top part with the API key check exactly the same) ...
-print("--- BITFORGE AGENCY TOOL v3 ---")
+print("--- TEST TOOL v4 ---")
 
 # ... (Keep the API Key validation logic) ...
 api_key = os.getenv("BITFORGE_SECRET")
