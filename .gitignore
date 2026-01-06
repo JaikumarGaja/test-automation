@@ -1,0 +1,9 @@
+# Secrets
+.env
+
+# Data
+agency-data/
+
+# Python junk
+__pycache__/
+*.pyc

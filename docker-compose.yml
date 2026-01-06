@@ -1,0 +1,8 @@
+services:
+  agency-bot:
+    build: .
+    container_name: bitforge_bot_v3
+    env_file:
+      - .env
+    volumes:
+      - ./agency-data:/data
