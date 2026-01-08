@@ -1,29 +1,25 @@
-import time
 import os
-import sys
-from datetime import datetime # Add this import!
+from flask import Flask
 
-# ... (Keep the top part with the API key check exactly the same) ...
-print("--- TEST TOOL v4 ---")
+app = Flask(__name__)
 
-# ... (Keep the API Key validation logic) ...
-api_key = os.getenv("BITFORGE_SECRET")
-if api_key != "super-secret-password":
-    sys.exit(1)
+# Get Secret
+api_key = os.getenv("BITFORGE_SECRET", "No-Key-Found")
 
-print("Server started. Saving data to /data/leads.txt")
+@app.route('/')
+def home():
+    return f"""
+    <h1>BitForge Agency Tool v5</h1>
+    <p>Status: <b>ONLINE</b></p>
+    <p>Secret Key Used: {api_key}</p>
+    <p>Scanning active...</p>
+    """
 
-# Ensure the folder exists inside the container
-os.makedirs("/data", exist_ok=True)
+@app.route('/health')
+def health():
+    return "OK", 200
 
-while True:
-    # Create a timestamp string
-    now = datetime.now().strftime("%H:%M:%S")
-    log_entry = f"[{now}] Found client using key: {api_key}\n"
-
-    # Write to file
-    with open("/data/leads.txt", "a") as file:
-        file.write(log_entry)
-
-    print(f"Log saved: {log_entry.strip()}")
-    time.sleep(5)
+if __name__ == "__main__":
+    # Listen on 0.0.0.0 (All interfaces) on port 5000
+    print("Starting Web Server...")
+    app.run(host='0.0.0.0', port=5000)

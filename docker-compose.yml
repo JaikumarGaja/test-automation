@@ -1,18 +1,10 @@
 services:
   agency-bot:
-    # OLD: build: .
-    # NEW: Download from Docker Hub (where GitHub Actions pushes)
-    image: jaikumargaja/agency-bot:latest
-    container_name: bitforge_bot_prod
+    build: .   # Make sure this is "build", not "image" for now
+    container_name: bitforge_web
     env_file:
       - .env
+    ports:
+      - "5000:5000"  # Left: Laptop Port, Right: Container Port
     volumes:
       - ./agency-data:/data
-    restart: always
-
-  # Add the Watchtower Service here
-  watchtower:
-    image: containrrr/watchtower
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-    command: --interval 30 # Check for updates every 30 seconds
