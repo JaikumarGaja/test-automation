@@ -9,7 +9,7 @@ api_key = os.getenv("BITFORGE_SECRET", "No-Key-Found")
 @app.route('/')
 def home():
     return f"""
-    <h1>BitForge Agency Tool v5</h1>
+    <h1>BitForge Agency Tool v6 !!!!!!!!!!! GLOBAL AWS LAUNCH</h1>
     <p>Status: <b>ONLINE</b></p>
     <p>Secret Key Used: {api_key}</p>
     <p>Scanning active...</p>
